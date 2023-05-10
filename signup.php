@@ -29,10 +29,6 @@
     </div>
 
 
-
-
-
-
         <?php
             if(isset($_POST['submit'])){
             require '_dbcon.php';
@@ -41,14 +37,14 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
             $cpassword = $_POST['cpassword'];
-            $duplicate = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
+            $duplicate = mysqli_query($connect, "SELECT * FROM db WHERE username = '$username' OR email = '$email'");
 
             if(mysqli_num_rows($duplicate)>0){
                 echo
                 "<script>alert('Username or Email has Already Exist')</script>";
             }else{
                 if($password ==  $cpassword){
-                    $query = "INSERT INTO users VALUES('', '$name', '$username', '$email', '$password')";
+                    $query = "INSERT INTO db VALUES('', '$name', '$username', '$email', '$password')";
                     mysqli_query($connect, $query);
                     echo
                     "<script>alert('Account Created!')</script>";
